@@ -3,16 +3,12 @@ from matplotlib.animation import FuncAnimation
 import dh_params as dh
 import numpy as np
 
-n = int(input("Enter number of animation steps: "))
-theta = float(input("Enter the final value of theta: "))
-aplha = float(input("Enter the final value of aplha: "))
-theta2 = float(input("Enter the final value of theta: "))
-aplha2 = float(input("Enter the final value of aplha: "))
-
-theta_step = theta/n
-alpha_step = aplha/n
-theta2_step = theta2/n
-alpha2_step = aplha2/n    
+theta, theta2 = 34, 22
+alpha, alpha2 = 0, 0
+theta_step = theta/100
+alpha_step = alpha/100
+theta2_step = theta2/100
+alpha2_step = alpha2/100   
 
 x_data1 = []
 y_data1 = []
@@ -30,8 +26,10 @@ def animate(i):
     z1,x1 = (dh.generate_dh_matrices(1.2,alpha_step*i,0,theta_step*i))
     point2=dh.transform([z1,x1])
     
-    z2,x2 = (dh.generate_dh_matrices(1.6, alpha2_step*i,0,theta2_step*i))
+    z2,x2 = (dh.generate_dh_matrices(1.6, alpha2_step*i,0,theta2_step*i))   
     point3=dh.transform([z1,x1,z2,x2])
+    
+    print ("End effector position: ", point3, '\n', "step =" , i)
     
     line1.set_xdata([point1[0],point2[0]])
     line1.set_ydata([point1[1], point2[1]])
@@ -41,6 +39,6 @@ def animate(i):
     
     return line1, line2
 
-ani = FuncAnimation(fig, func=animate, frames=np.arange(0, 10, 0.1), interval=20)
+ani = FuncAnimation(fig, func=animate, frames=np.arange(0, 101, 1), interval=10, repeat = False)
 plt.show()
     
