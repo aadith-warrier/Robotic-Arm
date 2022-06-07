@@ -1,9 +1,9 @@
 import numpy as np
 
-l1 = float(input("Length of first link: "))
-l2 = float(input("Length of the second link: "))
-theta1 = float(input("Incliation of the first link: "))
-theta2 = float(input("Inclination of the second link: "))
+l1 = float(1.2)
+l2 = float(1.6)
+theta1 = float(34.00)
+theta2 = float(22.00)
 theta2 = theta1+theta2
 
 
